@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
 from pathlib import Path
+import pymysql
+pymysql.install_as_MySQLdb()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -76,12 +78,12 @@ WSGI_APPLICATION = 'BddINT.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',  # Moteur MySQL
-        'NAME': 'micro_projet',  # Remplacez par le nom de la base de données
-        'USER': 'TP',  # L'utilisateur MySQL
-        'PASSWORD': 'votre_mot_de_passe',  # Le mot de passe
-        'HOST': 'localhost',  # Ou l'IP du serveur MySQL
-        'PORT': '3306',  # Port par défaut de MySQL
+        'ENGINE': 'django.db.backends.mysql',  # Utiliser le moteur MySQL
+        'NAME': 'gestion d’une flotte de camions',  # Le nom de ta base de données
+        'USER': 'root',  # Utilisateur root pour MAMP
+        'PASSWORD': 'root',  # Assure-toi que c'est bien le mot de passe de MAMP
+        'HOST': '127.0.0.1',  # Utiliser 127.0.0.1 (localhost aussi valide)
+        'PORT': '8889',  # Port utilisé par MAMP
     }
 }
 
