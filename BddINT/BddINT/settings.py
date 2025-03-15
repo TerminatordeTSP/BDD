@@ -76,8 +76,12 @@ WSGI_APPLICATION = 'BddINT.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',  # Moteur MySQL
+        'NAME': 'micro_projet',  # Remplacez par le nom de la base de données
+        'USER': 'TP',  # L'utilisateur MySQL
+        'PASSWORD': 'votre_mot_de_passe',  # Le mot de passe
+        'HOST': 'localhost',  # Ou l'IP du serveur MySQL
+        'PORT': '3306',  # Port par défaut de MySQL
     }
 }
 
