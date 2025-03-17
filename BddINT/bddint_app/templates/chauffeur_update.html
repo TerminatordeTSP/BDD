@@ -1,0 +1,27 @@
+<!-- home_chauffeur.html -->
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Page de configuration des chauffeurs</title>
+</head>
+<body>
+    <h1>Gérer les chauffeurs</h1>
+
+    <!-- Si l'utilisateur est connecté, afficher son ID -->
+    <p>Votre etes connecté en tant que : {{ login }}(Root)</p>
+    <p>Si ce compte ne vous appartiens par veuillez vous déconnecter.</p>
+
+    <h2>Veuillez remplir ce formulaire</h2>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Enregistrer</button>
+    </form>
+
+
+    <a href="{% url 'chauffeurs' %}">Revenir en arrière</a>
+    <a href="{% url 'home' %}">Page d'acceuil</a>
+    <a href="{% url 'logout' %}">Se déconnecter</a>
+</body>
+</html>

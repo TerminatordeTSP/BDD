@@ -1,0 +1,43 @@
+<!-- home_chauffeur.html -->
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Page de configuration des chauffeurs</title>
+</head>
+<body>
+    <h1>Gérer les chauffeurs</h1>
+
+    <!-- Si l'utilisateur est connecté, afficher son ID -->
+    <p>Votre etes connecté en tant que : {{ login }}(Root)</p>
+    <p>Si ce compte ne vous appartiens par veuillez vous déconnecter.</p>
+
+    <h3>Chauffeurs disponibles</h3>
+
+    {% if result %}
+    <table>
+        <tr>
+            <th>numéro de permis de conduire</th>
+            <th>Nom</th>
+            <th>Prénom</th>
+            <th>Modifier</th>
+            <th>Supprimer</th>
+        </tr>
+        {% for row in result %}
+        <tr>
+            <td>--{{ row.numéro_de_permis_de_conduire }}--</td>  <!-- numéro d'immatriculation -->
+            <td>--{{ row.nom }}--</td>  <!-- type -->
+            <td>--{{ row.prenom }}--</td>  <!-- Poids total transportable -->
+            <td><a href="{% url 'chauffeurs_update' row.numéro_de_permis_de_conduire %}">Modifier</a></td>
+            <td><a href="{% url 'chauffeurs_delete' row.numéro_de_permis_de_conduire %}">Supprimer</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+{% else %}
+    <p>Aucun résultat trouvé.</p>
+{% endif %}
+    <!-- Lien pour se déconnecter -->
+    <a href="{% url 'home' %}">Page d'acceuil</a>
+    <a href="{% url 'logout' %}">Se déconnecter</a>
+</body>
+</html>

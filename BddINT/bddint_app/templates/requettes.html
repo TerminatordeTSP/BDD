@@ -1,0 +1,47 @@
+<!-- home_chauffeur.html -->
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Informations sur les camions et leurs cargaisons</title>
+</head>
+<body>
+    <h1>Informations sur les camions et leurs cargaisons</h1>
+
+    <!-- Si l'utilisateur est connecté, afficher son ID -->
+    <p>Votre etes connecté en tant que : {{ login }}(Root)</p>
+    <p>Si ce compte ne vous appartiens par veuillez vous déconnecter.</p>
+
+    <h2>Veuillez remplir ce formulaire</h2>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Envoyer</button>
+    </form>
+
+    <h3>Résultat</h3>
+    {% if result %}
+    <table>
+        <tr>
+            <th>Plaque</th>
+            <th>Type</th>
+            <th>Marchandise</th>
+            <th>Ville de départ</th>
+        </tr>
+        {% for row in result %}
+        <tr>
+            <td>--{{ row.0 }}--</td>  <!-- plaque -->
+            <td>--{{ row.1 }}--</td>  <!-- type -->
+            <td>--{{ row.2 }}--</td>  <!-- marchandise -->
+            <td>--{{ row.3 }}--</td>  <!-- ville d'arrivée -->
+        </tr>
+        {% endfor %}
+    </table>
+{% else %}
+    <p>Aucun résultat trouvé.</p>
+{% endif %}
+    <!-- Lien pour se déconnecter -->
+    <a href="{% url 'home' %}">Page d'acceuil</a>
+    <a href="{% url 'logout' %}">Se déconnecter</a>
+</body>
+</html>

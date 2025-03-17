@@ -17,6 +17,21 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
+from django.urls import path
+from bddint_app import views
+
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('login/', views.login_view, name='login'),
+    path('home/', views.home, name='home'),
+    path('logout/', views.logout_view, name='logout'),
+    path('requettes/', views.requettes, name='requettes'),
+    path('localisation/', views.localisation, name='localisation'),
+    path('camions/', views.camions, name='camions'),
+    path('chauffeurs/', views.chauffeurs, name='chauffeurs'),
+    path('camions_update/<str:id>/', views.camions_update, name='camions_update'),
+    path('chauffeurs_update/<str:numéro_de_permis_de_conduire>/', views.chauffeurs_update, name='chauffeurs_update'),
+    path('chauffeurs_delete/<str:numéro_de_permis_de_conduire>/', views.chauffeurs_delete, name='chauffeurs_delete'),
+    path('camions_insert/', views.camions_insert, name='camions_insert'),
+
 ]

@@ -1,0 +1,18 @@
+<!-- home_chauffeur.html -->
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Page d'Accueil</title>
+</head>
+<body>
+    <h1>Bienvenue sur la page d'accueil</h1>
+
+    <!-- Si l'utilisateur est connecté, afficher son ID -->
+    <p>Votre etes connecté en tant que : {{ login }}(Chauffeur)</p>
+    <p>Si ce compte ne vous appartiens par veuillez vous déconnecter.</p>
+
+    <!-- Lien pour se déconnecter -->
+    <a href="{% url 'logout' %}">Se déconnecter</a>
+</body>
+</html>
