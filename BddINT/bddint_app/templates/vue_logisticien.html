@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Les affectations</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'bddint_app/camions.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>Les affectations</h1>
+
+        <p>Vous êtes connecté en tant que : <strong>{{ login }}</strong> (Logisticiens)</p>
+        <p class="warning">Si ce compte ne vous appartient pas, veuillez vous déconnecter.</p>
+
+        <h3>Les affectations</h3>
+
+        {% if result %}
+        <table>
+            <tr>
+                <th>ID_Marchandise</th>
+                <th>Nom_Marchandise</th>
+                <th>Poids_kg
+                <th>Ville_Depart</th>
+                <th>Ville_Arrivee</th>
+                <th>Immatriculation_Camion</th>
+                <th>Nom_Chauffeur</th>
+                <th>Prenom_Chauffeur</th>
+                <th>Date_Transport</th>
+            </tr>
+            {% for row in result %}
+            <tr>
+                <td>{{ row.0 }}</td>
+                <td>{{ row.1 }}</td>
+                <td>{{ row.2}}</td>
+                <td>{{ row.3}}</td>
+                <td>{{ row.4}}</td>
+                <td>{{ row.5}}</td>
+                <td>{{ row.6}}</td>
+                <td>{{ row.7}}</td>
+                <td>{{ row.8}}</td>
+            </tr>
+            {% endfor %}
+        </table>
+        {% else %}
+        <p>Aucun résultat trouvé.</p>
+        {% endif %}
+
+        <div class="links">
+            <a href="{% url 'home' %}">🏠 Page d'accueil</a>
+            <a href="{% url 'logout' %}" class="logout">❌ Se déconnecter</a>
+        </div>
+    </div>
+</body>
+</html>

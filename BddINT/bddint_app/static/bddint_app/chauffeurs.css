@@ -1,0 +1,126 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.container {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    width: 80%;
+}
+
+h1, h2, h3 {
+    color: #333;
+}
+
+p {
+    font-size: 16px;
+    color: #666;
+}
+
+.warning {
+    color: red;
+    font-weight: bold;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
+}
+
+th {
+    background-color: #007BFF;
+    color: white;
+}
+
+button, .btn {
+    background: linear-gradient(135deg, #007BFF, #0056b3);
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 30px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+button:hover, .btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.links {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+
+.links a {
+    text-decoration: none;
+    background: linear-gradient(135deg, #007BFF, #0056b3);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 30px;
+    font-size: 16px;
+    font-weight: bold;
+    transition: transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+.links a:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.logout {
+    background: linear-gradient(135deg, #ff4d4d, #b30000) !important;
+}
+
+.btn-edit {
+    background: linear-gradient(135deg, #FFC107, #FF9800);
+    color: white;
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: bold;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.btn-edit:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.btn-delete {
+    background: linear-gradient(135deg, #FF4D4D, #B30000);
+    color: white;
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: bold;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.btn-delete:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}

@@ -4,6 +4,9 @@ from bddint_app.forms import LoginForm,CamionForm,ChauffeurForm,LocalisationForm
 from bddint_app.forms import RequetteForm
 from bddint_app.models import Logins, Camion, Chauffeur
 from mysql.connector import IntegrityError
+from django.shortcuts import render, redirect
+from django.db import connection  # Import pour exécuter des requêtes SQL
+from django.http import HttpResponse
 from django.shortcuts import render
 from django.shortcuts import redirect
 from django.contrib.auth import authenticate, login
@@ -11,6 +14,86 @@ from django.contrib.auth.models import User
 from django.contrib.auth import login as auth_login  # Ajoute un alias si nécessaire
 from django.db import connection
 from django.shortcuts import render, redirect, get_object_or_404
+import mysql.connector
+
+from django.shortcuts import render, redirect
+from django.http import HttpResponse
+import mysql.connector
+from .models import Logins
+
+def vue_affectation_chauffeur(request):
+    if 'user_login' in request.session:
+        user_login = request.session.get('user_login', 'Utilisateur inconnu')
+
+        try:
+            user = Logins.objects.get(login=user_login)
+
+            if role(request) == "Chauffeur":
+                try:
+                    # Connexion à MySQL avec les identifiants de l'utilisateur connecté
+                    conn = mysql.connector.connect(
+                        host="127.0.0.1",
+                        port=8889,
+                        user=user.login,  # Connexion en tant que l'utilisateur spécifique
+                        password=user.mot_de_passe,
+                        database="Gestion d’une flotte de camions"
+                    )
+                    cursor = conn.cursor()
+
+                    # Exécution de la requête SQL avec l'utilisateur spécifique
+                    query = "SELECT * FROM `Gestion d’une flotte de camions`.`vue_affectations_chauffeur`"
+                    cursor.execute(query)
+                    rows = cursor.fetchall()
+                    print(rows)
+
+                    # Fermeture des connexions
+                    cursor.close()
+                    conn.close()
+
+                    return render(request, 'vue_affectations_chauffeur.html', {'login': user_login, 'result': rows})
+
+                except mysql.connector.Error as e:
+                    return HttpResponse(f"Erreur SQL : {e}", status=500)
+
+            else:
+                return render(request, 'denied3.html')
+
+        except Logins.DoesNotExist:
+            return HttpResponse("Utilisateur introuvable.", status=404)
+
+    return redirect('login')  # Redirige si l'utilisateur n'est pas connecté
+
+def vue_logisticien(request):
+    if 'user_login' in request.session:
+        user_login = request.session.get('user_login', 'Utilisateur inconnu')
+
+        try:
+            user = Logins.objects.get(login=user_login)
+
+            if role(request) == "Logisticien":
+                try:
+                    # Exécution de la requête SQL avec l'utilisateur spécifique
+                    query = "SELECT * FROM `Gestion d’une flotte de camions`.`vue_synthese_logistique`"
+                    with connection.cursor() as cursor:
+                        cursor.execute(query)
+                        rows = cursor.fetchall()
+
+                    # Fermeture des connexions
+                    cursor.close()
+                    print(rows)
+
+                    return render(request, 'vue_logisticien.html', {'login': user_login, 'result': rows})
+
+                except mysql.connector.Error as e:
+                    return HttpResponse(f"Erreur SQL : {e}", status=500)
+
+            else:
+                return render(request, 'denied4.html')
+
+        except Logins.DoesNotExist:
+            return HttpResponse("Utilisateur introuvable.", status=404)
+
+    return redirect('login')  # Redirige si l'utilisateur n'est pas connecté
 
 def role(request):
     if 'user_login' in request.session:
@@ -100,7 +183,7 @@ def chauffeurs_update(request, numéro_de_permis_de_conduire):
                       'chauffeur_update.html',
                       {'form': form, 'chauffeur': chauffeur})
     else:
-        return render(request, 'denied2.html')
+        return render(request, 'denied.html')
 
 def chauffeurs(request):
     if 'user_login' in request.session:

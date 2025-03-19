@@ -1,41 +1,46 @@
-<!-- home_chauffeur.html -->
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
     <title>Page de configuration des camions</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'bddint_app/camions.css' %}">
 </head>
 <body>
-    <h1>Gérer les camions.</h1>
+    <div class="container">
+        <h1>Gérer les camions</h1>
 
-    <!-- Si l'utilisateur est connecté, afficher son ID -->
-    <p>Votre etes connecté en tant que : {{ login }}(Root)</p>
-    <p>Si ce compte ne vous appartiens par veuillez vous déconnecter.</p>
+        <p>Vous êtes connecté en tant que : <strong>{{ login }}</strong> (Root)</p>
+        <p class="warning">Si ce compte ne vous appartient pas, veuillez vous déconnecter.</p>
 
-    <h3>Camions disponibles</h3>
-        <a href="{% url 'camions_insert' %}">insérer un camion</a>
-    {% if result %}
-    <table>
-        <tr>
-            <th>numéro d'immatriculation</th>
-            <th>Type</th>
-            <th>Poids total transportable (kg) </th>
-            <th>Modifier</th>
-        </tr>
-        {% for row in result %}
-        <tr>
-            <td>--{{ row.numéro_d_immatriculation }}--</td>  <!-- numéro d'immatriculation -->
-            <td>--{{ row.type }}--</td>  <!-- type -->
-            <td>--{{ row.poid_total_transportable_kg }}--</td>  <!-- Poids total transportable -->
-            <td><a href="{% url 'camions_update' row.numéro_d_immatriculation %}">Modifier</a></td>
-        </tr>
-        {% endfor %}
-    </table>
-{% else %}
-    <p>Aucun résultat trouvé.</p>
-{% endif %}
-    <!-- Lien pour se déconnecter -->
-    <a href="{% url 'home' %}">Page d'acceuil</a>
-    <a href="{% url 'logout' %}">Se déconnecter</a>
+        <h3>Camions disponibles</h3>
+        <a href="{% url 'camions_insert' %}" class="btn">➕ Insérer un camion</a>
+
+        {% if result %}
+        <table>
+            <tr>
+                <th>Numéro d'immatriculation</th>
+                <th>Type</th>
+                <th>Poids total transportable (kg)</th>
+                <th>Modifier</th>
+            </tr>
+            {% for row in result %}
+            <tr>
+                <td>{{ row.numéro_d_immatriculation }}</td>
+                <td>{{ row.type }}</td>
+                <td>{{ row.poid_total_transportable_kg }}</td>
+                <td><a href="{% url 'camions_update' row.numéro_d_immatriculation %}" class="btn-edit">✏️ Modifier</a></td>
+            </tr>
+            {% endfor %}
+        </table>
+        {% else %}
+        <p>Aucun résultat trouvé.</p>
+        {% endif %}
+
+        <div class="links">
+            <a href="{% url 'home' %}">🏠 Page d'accueil</a>
+            <a href="{% url 'logout' %}" class="logout">❌ Se déconnecter</a>
+        </div>
+    </div>
 </body>
 </html>

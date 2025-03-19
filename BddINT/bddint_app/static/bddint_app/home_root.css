@@ -16,8 +16,8 @@
         .container {
             background: white;
             padding: 20px;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             text-align: center;
             width: 50%;
         }
@@ -35,26 +35,19 @@
         .links {
             display: flex;
             flex-direction: column;
-            gap: 15px;
+            gap: 10px;
             margin-top: 20px;
         }
         .links a {
             text-decoration: none;
-            background: linear-gradient(135deg, #007BFF, #0056b3);
+            background-color: #007BFF;
             color: white;
-            padding: 12px 20px;
-            border-radius: 30px;
-            font-size: 16px;
-            font-weight: bold;
-            transition: transform 0.2s ease, box-shadow 0.3s ease;
-            display: inline-block;
+            padding: 10px;
+            border-radius: 5px;
+            transition: background 0.3s;
         }
         .links a:hover {
-            transform: scale(1.05);
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-        }
-        .logout {
-            background: linear-gradient(135deg, #ff4d4d, #b30000) !important;
+            background-color: #0056b3;
         }
     </style>
 </head>
@@ -68,11 +61,11 @@
 
         <!-- Liens vers différentes pages -->
         <div class="links">
-            <a href="{% url 'requettes' %}">📄 Page de requêtes</a>
-            <a href="{% url 'camions' %}">🚛 Configuration des camions</a>
-            <a href="{% url 'chauffeurs' %}">👨‍✈️ Configuration des chauffeurs</a>
-            <a href="{% url 'localisation' %}">📍 Localisation des camions</a>
-            <a href="{% url 'logout' %}" class="logout">❌ Se déconnecter</a>
+            <a href="{% url 'requettes' %}">Page de requêtes</a>
+            <a href="{% url 'camions' %}">Page de configuration des camions</a>
+            <a href="{% url 'chauffeurs' %}">Page de configuration des chauffeurs</a>
+            <a href="{% url 'localisation' %}">Localisation des camions</a>
+            <a href="{% url 'logout' %}" style="background-color: red;">Se déconnecter</a>
         </div>
     </div>
 </body>

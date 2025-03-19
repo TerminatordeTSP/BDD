@@ -1,18 +1,25 @@
-<!-- home_chauffeur.html -->
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Page d'Accueil</title>
+        {% load static %}
+    <link rel="stylesheet" href="{% static 'bddint_app/home_logisticien.css' %}">
 </head>
 <body>
-    <h1>Bienvenue sur la page d'accueil</h1>
+    <div class="container">
+        <h1>Bienvenue sur la page d'accueil</h1>
 
-    <!-- Si l'utilisateur est connecté, afficher son ID -->
-    <p>Votre etes connecté en tant que : {{ login }}(Logisticien)</p>
-    <p>Si ce compte ne vous appartiens par veuillez vous déconnecter.</p>
-    <a href="{% url 'chauffeurs' %}">Page de configuration des chauffeurs</a>
-    <!-- Lien pour se déconnecter -->
-    <a href="{% url 'logout' %}">Se déconnecter</a>
+        <!-- Affichage de l'identité de l'utilisateur connecté -->
+        <p>Vous êtes connecté en tant que : <span class="warning">{{ login }}</span> (Logisticien)</p>
+        <p>Si ce compte ne vous appartient pas, veuillez vous déconnecter.</p>
+
+        <div class="links">
+            <a href="{% url 'chauffeurs' %}" class="btn">Page de configuration des chauffeurs</a>
+            <a href="{% url 'vue_logisticien' %}" class="btn">Les Affectations</a>
+            <a href="{% url 'logout' %}" class="btn logout">Se déconnecter</a>
+        </div>
+    </div>
 </body>
 </html>

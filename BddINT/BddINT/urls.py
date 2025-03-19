@@ -33,5 +33,7 @@ urlpatterns = [
     path('chauffeurs_update/<str:numéro_de_permis_de_conduire>/', views.chauffeurs_update, name='chauffeurs_update'),
     path('chauffeurs_delete/<str:numéro_de_permis_de_conduire>/', views.chauffeurs_delete, name='chauffeurs_delete'),
     path('camions_insert/', views.camions_insert, name='camions_insert'),
+    path('vue_affectation_chauffeur/', views.vue_affectation_chauffeur, name='vue_affectation_chauffeur'),
+    path('vue_logisticien/', views.vue_logisticien, name='vue_logisticien'),
 
 ]

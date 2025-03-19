@@ -5,7 +5,7 @@ import pymysql
 pymysql.install_as_MySQLdb()
 
 BASE_DIR = Path(__file__).resolve().parent.parent
-
+STATIC_URL = '/static/'
 SECRET_KEY = 'django-insecure-7+@d^dt20i*&w%8x_8)dpufc+8m2tyz0$#)sr8hg+8mo533fz)'
 DEBUG = True
 ALLOWED_HOSTS = []

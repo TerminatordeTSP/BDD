@@ -2,40 +2,31 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Informations sur les camions et leurs cargaisons</title>
-
+    <title>Mes affectations</title>
     {% load static %}
-    <link rel="stylesheet" href="{% static 'bddint_app/home_root.css' %}">
+    <link rel="stylesheet" href="{% static 'bddint_app/camions.css' %}">
 </head>
 <body>
     <div class="container">
-        <h1>Informations sur les camions et leurs cargaisons</h1>
+        <h1>Mes affectations</h1>
 
-        <p>Vous êtes connecté en tant que : <strong>{{ login }}</strong> (Root)</p>
+        <p>Vous êtes connecté en tant que : <strong>{{ login }}</strong> (Chauffeur)</p>
         <p class="warning">Si ce compte ne vous appartient pas, veuillez vous déconnecter.</p>
 
-        <h2>Veuillez remplir ce formulaire</h2>
-        <form method="POST">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <button type="submit">Envoyer</button>
-        </form>
+        <h3>Mes affectations</h3>
 
-        <h3>Résultat</h3>
         {% if result %}
         <table>
             <tr>
-                <th>Plaque</th>
-                <th>Type</th>
-                <th>Marchandise</th>
-                <th>Ville de départ</th>
+                <th>Numéro d'immatriculation</th>
+                <th>numéro_de_permis_de_conduire</th>
+                <th>date_affectation</th>
             </tr>
             {% for row in result %}
             <tr>
                 <td>{{ row.0 }}</td>
                 <td>{{ row.1 }}</td>
-                <td>{{ row.2 }}</td>
-                <td>{{ row.3 }}</td>
+                <td>{{ row.2	 }}</td>
             </tr>
             {% endfor %}
         </table>
